@@ -1,0 +1,6 @@
+Project: Two-Stage Lightweight Detection of Indirect Prompt Injection in Tool-Using LLM
+An LLM agent reads untrusted content (a web page, an email, a tool output). That content may contain a hidden instruction trying to hijack the agent. We build a two-stage filter that sits in front of the agent:
+
+Stage 1 is a small, fast transformer classifier. It scores every piece of content from 0 (clean) to 1 (injected).
+If the score is confidently low or confidently high, we decide immediately. No expensive model is called. This is the common case.
+If the score is in the uncertain middle band, we escalate to Stage 2, an LLM that reads the content and gives a verdict.
